@@ -16,7 +16,6 @@ class NoteImageResource extends JsonResource
                 'note' => $this->note_id,
                 'image' => $this->id,
             ]),
-            'file_size' => $this->file_size,
             'mime_type' => $this->mime_type,
             'created_at' => $this->created_at,
         ];
