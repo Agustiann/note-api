@@ -15,7 +15,13 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:50'],
-            'password' => ['nullable', 'string', 'min:6', 'confirmed'],
+            'password' => [
+                'nullable',
+                'string',
+                'min:8',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/',
+                'confirmed',
+            ],
             'photo' => ['nullable', 'file', 'image', 'max:2048'],
         ];
     }
@@ -24,7 +30,8 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama wajib diisi.',
-            'password.min' => 'Password minimal 6 karakter.',
+            'password.min' => 'Password minimal 8 karakter.',
+            'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan simbol.',
             'password.confirmed' => 'Konfirmasi password tidak sama.',
             'photo.file' => 'File tidak valid.',
             'photo.image' => 'File harus berupa gambar.',
